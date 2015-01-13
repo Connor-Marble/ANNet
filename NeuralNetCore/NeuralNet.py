@@ -36,10 +36,18 @@ class NeuralNetwork():
             for neuron in layer:
                 neuron.evaluate()
 
+    def backpropogate(self, targetoutput):
+        error = self.get_output_error(targetoutput)
+        
+    def get_output_error(self, targetoutput):
+        outputvalues = [x.output for x in self.layers[-1]]
+        return map(lambda a,b: a-b,targetoutput, outputvalues)
+        
 if __name__=='__main__':
     net = NeuralNetwork([3,5,6,5,4])
     net.setinput([0,0.9,0.1])
     net.evaluate()
+    net.backpropogate(range(4))
     print(net)
                     
                 
