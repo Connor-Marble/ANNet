@@ -1,6 +1,7 @@
 import math
 from collections import namedtuple
 
+
 Connection = namedtuple('Connection', 'neuron, weight')
 
 Activation_Threshhold = -0.5
@@ -29,6 +30,10 @@ class Neuron():
     def addconnection(self, connected, weight):
         self.connections.append(Connection(connected, weight))
 
+    def geterror(self, errorlayer):
+        error = sum([a.weight*b for a,b in zip(self.connections, errorlayer)])
+        return error
+        
     def __str__(self):
         return str(self.output)
 
